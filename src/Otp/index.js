@@ -1,81 +1,83 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useRef, useEffect} from 'react';
-import {View, TextInput, Dimensions} from 'react-native';
+import React, { useState, useRef, useEffect } from "react"
+import { View, TextInput, Dimensions } from "react-native"
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get("window").width
+const height = Dimensions.get("window").height
 
-import styles from './styles';
+import styles from "./styles"
 
-const initCodes = [];
+const initCodes = []
 export default function Otp({
   containerStyle,
   otpStyles,
   codeCount = 4,
   onTyping,
   onFinish,
+  ...props
 }) {
-  const inputCodeRef = useRef(new Array());
-  const [codes, setCodes] = useState(initCodes);
+  const inputCodeRef = useRef(new Array())
+  const [codes, setCodes] = useState(initCodes)
   useEffect(() => {
-    const codes = [];
+    const codes = []
     for (let i = 0; i < codeCount; i++) {
-      codes.push('');
+      codes.push("")
     }
-    setCodes(codes);
-  }, []);
+    setCodes(codes)
+  }, [])
 
   useEffect(() => {
-    onTyping && onTyping(getCodes());
+    onTyping && onTyping(getCodes())
     const isTypeFinish = codes.every(function (i) {
-      return i !== '';
-    });
+      return i !== ""
+    })
     if (isTypeFinish) {
-      onFinish && onFinish(getCodes());
+      onFinish && onFinish(getCodes())
     }
-  }, [codes]);
+  }, [codes])
 
   const getCodes = () => {
-    let codeString = '';
-    codes.forEach(code => {
-      codeString += code;
-    });
-    return codeString;
-  };
+    let codeString = ""
+    codes.forEach((code) => {
+      codeString += code
+    })
+    return codeString
+  }
 
   const onChangeCode = (code, index) => {
-    const typedCode = code.slice(-1);
-    const currentCodes = [...codes];
-    currentCodes[index] = typedCode;
-    setCodes(currentCodes);
-  };
+    const typedCode = code.slice(-1)
+    const currentCodes = [...codes]
+    currentCodes[index] = typedCode
+    setCodes(currentCodes)
+  }
   const onKeyPress = (event, index) => {
-    const key = event.nativeEvent.key;
-    let destIndex = index;
-    if (key === 'Backspace') {
-      destIndex = index > 0 ? index - 1 : 0;
+    const key = event.nativeEvent.key
+    let destIndex = index
+    if (key === "Backspace") {
+      destIndex = index > 0 ? index - 1 : 0
     } else {
-      destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1;
+      destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1
     }
-    inputCodeRef.current[destIndex].focus();
-  };
+    inputCodeRef.current[destIndex].focus()
+  }
   return (
     <View style={[styles.form, containerStyle]}>
       {codes.map((code, index) => {
         return (
           <TextInput
-            ref={element => inputCodeRef.current.push(element)}
+            ref={(element) => inputCodeRef.current.push(element)}
             style={[
               styles.input,
               otpStyles,
-              {width: width / (codeCount + 2), height: height / 14},
+              { width: width / (codeCount + 2), height: height / 14 },
             ]}
-            onChangeText={text => onChangeCode(text, index)}
-            onKeyPress={event => onKeyPress(event, index)}
+            onChangeText={(text) => onChangeCode(text, index)}
+            onKeyPress={(event) => onKeyPress(event, index)}
             value={code}
+            {...props}
           />
-        );
+        )
       })}
     </View>
-  );
+  )
 }

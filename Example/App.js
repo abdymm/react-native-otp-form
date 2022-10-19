@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,7 +18,7 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {OTP} from '../src/Otp';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -45,7 +44,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   return (
     <SafeAreaView>
       <Section title="Learn More">Input OTP</Section>
@@ -53,6 +52,7 @@ const App: () => Node = () => {
         codeCount={6}
         containerStyle={{marginTop: 50}}
         otpStyles={{backgroundColor: '#eee'}}
+        keyboardType="number-pad"
       />
     </SafeAreaView>
   );
