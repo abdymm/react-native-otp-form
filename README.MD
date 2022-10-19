@@ -34,14 +34,14 @@ Check out the [example project](https://github.com/abdymm/react-native-otp-form/
 
 ### Props
 
-* [Inherited `View` props...](https://github.com/facebook/react-native-website/blob/master/docs/view.md#props)
+* [Inherited `TextInput` props...](https://reactnative.dev/docs/textinput)
 
 
 | Type       | Required | Description |
 | ---------- | -------- | ---
 | codeCount | Yes       | How many otp box/character|
 | containerStyle | No       | Styles for container `View`|
-| otpStyle | No       | Styles for each box `TextInput`|
+| otpStyle | No       | Styles for each of `TextInput`|
 | onTyping | No       | Callback to get otp when user typing|
 | onFinish | No       | Callback to get otp value when user finish filled all boxes|
 
