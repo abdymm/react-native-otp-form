@@ -65,6 +65,7 @@ export default function Otp({
       {codes.map((code, index) => {
         return (
           <TextInput
+            key={`${index}`}
             ref={(element) => inputCodeRef.current.push(element)}
             style={[
               styles.input,

@@ -3,9 +3,7 @@
 
 React Native component for OTP Input Form
 
-![Alt text](https://i.ibb.co/ZT0K91h/Simulator-Screen-Shot-i-Phone-12-Pro-Max-2021-03-14-at-07-35-42.png=100x)
-![Alt text](https://i.ibb.co/FVm2NRK/Simulator-Screen-Shot-i-Phone-12-Pro-Max-2021-03-14-at-08-47-28.png=100x)
-![Alt text](https://i.ibb.co/S7qpKPp/Simulator-Screen-Shot-i-Phone-12-Pro-Max-2021-03-14-at-08-47-32.png=100x)
+
 
 
 ## Getting started
@@ -19,7 +17,7 @@ or
 ### Example
 
 ```javascript
-import {OTP} from 'react-native-otp-form';
+import OTP from 'react-native-otp-form';
 ```
 
 ```javascript
