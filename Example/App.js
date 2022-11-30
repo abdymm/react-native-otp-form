@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {OTP} from '../src/Otp';
+import OTP from '../src/Otp';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
