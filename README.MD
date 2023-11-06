@@ -8,8 +8,12 @@ React Native component for OTP Input Form
 
 ## Getting started
 
+### Yarn
+
 `yarn add react-native-otp-form`
-or
+
+### NPM
+
 `npm install react-native-otp-form --save`
 
 ## Usage
@@ -42,6 +46,7 @@ Check out the [example project](https://github.com/abdymm/react-native-otp-form/
 | otpStyle | No       | Styles for each of `TextInput`|
 | onTyping | No       | Callback to get otp when user typing|
 | onFinish | No       | Callback to get otp value when user finish filled all boxes|
+| ...TextInputProps | No       | [TextInput Props](https://reactnative.dev/docs/textinput)|
 
 # Running the Example app 
 While developing, you can run the example app to test your changes.
@@ -49,7 +54,7 @@ While developing, you can run the example app to test your changes.
 ## Setup
 
 - Clone the repository 
-- Go to Example folder
+- Go to Example folder (Expo)
 - Run `yarn install`
 
 ## Start the app
@@ -59,8 +64,8 @@ While developing, you can run the example app to test your changes.
 
 ## TODO
 
-- XXXX
-- XXXX
+- 
+- 
 
 ## License
 The library is released under the MIT licence. For more information see `LICENSE`.
