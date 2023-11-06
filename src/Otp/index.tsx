@@ -45,7 +45,7 @@ const Otp = ({
     const isTypeFinish = codes.every((i) => {
       return i !== ""
     })
-    if (isTypeFinish) {
+    if (isTypeFinish && codes.length === codeCount) {
       onFinish && onFinish(getCodes())
     }
   }, [codes, onFinish, onTyping])

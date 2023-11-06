@@ -1,2 +1,3 @@
 import OTP from "./src/Otp"
-export { OTP }
+
+export default OTP 

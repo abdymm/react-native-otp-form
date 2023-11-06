@@ -1,8 +1,8 @@
 {
   "name": "react-native-otp-form",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "UI Component for OTP input form",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
