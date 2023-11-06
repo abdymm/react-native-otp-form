@@ -1,1 +1,2 @@
-export { default as Otp } from "./src/Otp"
+import OTP from "./src/Otp"
+export { OTP }

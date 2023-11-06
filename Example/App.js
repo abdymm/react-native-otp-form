@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-import Otp from "react-native-otp-form/src/Otp"
+import OTP from "react-native-otp-form"
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Text>Input your OTP</Text>
-      <Otp
+      <OTP
         codeCount={6}
         containerStyle={{ marginTop: 50 }}
         otpStyles={{ backgroundColor: "#fff", borderRadius: 100 }}
