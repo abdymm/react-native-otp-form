@@ -1,56 +1,74 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useRef, useEffect } from "react"
-import { View, TextInput, Dimensions } from "react-native"
+import React, { useState, useRef, useEffect, FunctionComponent } from "react"
+import {
+  View,
+  TextInput,
+  Dimensions,
+  TextInputProps,
+  ViewStyle,
+} from "react-native"
 
 const width = Dimensions.get("window").width
 const height = Dimensions.get("window").height
 
 import styles from "./styles"
 
-const initCodes = []
-export default function Otp({
+const initCodes: string[] = []
+interface OtpProps extends TextInputProps {
+  containerStyle?: ViewStyle
+  otpStyles?: ViewStyle
+  codeCount?: number
+  onTyping?: (code: string) => void
+  onFinish?: (code: string) => void
+}
+
+const Otp = ({
   containerStyle,
   otpStyles,
   codeCount = 4,
   onTyping,
   onFinish,
   ...props
-}) {
-  const inputCodeRef = useRef(new Array())
-  const [codes, setCodes] = useState(initCodes)
+}: OtpProps) => {
+  const inputCodeRef = useRef<TextInput[]>([])
+  const [codes, setCodes] = useState<string[]>(initCodes)
+
   useEffect(() => {
-    const codes = []
+    const codes: string[] = []
     for (let i = 0; i < codeCount; i++) {
       codes.push("")
     }
     setCodes(codes)
-  }, [])
+  }, [codeCount])
 
   useEffect(() => {
     onTyping && onTyping(getCodes())
-    const isTypeFinish = codes.every(function (i) {
+    const isTypeFinish = codes.every((i) => {
       return i !== ""
     })
     if (isTypeFinish) {
       onFinish && onFinish(getCodes())
     }
-  }, [codes])
+  }, [codes, onFinish, onTyping])
 
-  const getCodes = () => {
+  const getCodes = (): string => {
     let codeString = ""
-    codes.forEach((code) => {
+    codes.forEach((code: string) => {
       codeString += code
     })
     return codeString
   }
 
-  const onChangeCode = (code, index) => {
+  const onChangeCode = (code: string, index: number): void => {
     const typedCode = code.slice(-1)
     const currentCodes = [...codes]
     currentCodes[index] = typedCode
     setCodes(currentCodes)
   }
-  const onKeyPress = (event, index) => {
+
+  const onKeyPress = (
+    event: React.KeyboardEvent<TextInput>,
+    index: number
+  ): void => {
     const key = event.nativeEvent.key
     let destIndex = index
     if (key === "Backspace") {
@@ -58,15 +76,16 @@ export default function Otp({
     } else {
       destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1
     }
-    inputCodeRef.current[destIndex].focus()
+    inputCodeRef.current[destIndex]?.focus()
   }
+
   return (
     <View style={[styles.form, containerStyle]}>
       {codes.map((code, index) => {
         return (
           <TextInput
             key={`${index}`}
-            ref={(element) => inputCodeRef.current.push(element)}
+            ref={(element) => element && inputCodeRef.current.push(element)}
             style={[
               styles.input,
               otpStyles,
@@ -82,3 +101,5 @@ export default function Otp({
     </View>
   )
 }
+
+export default Otp
