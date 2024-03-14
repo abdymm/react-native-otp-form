@@ -1,3 +1,3 @@
-import OTP from "./src/OTP"
+import OTP from "./src/Otp"
 
 export default OTP

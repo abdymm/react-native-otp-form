@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, FunctionComponent } from "react"
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  FunctionComponent,
+  useCallback,
+} from "react"
 import {
   View,
   TextInput,
@@ -59,27 +65,28 @@ const Otp = ({
     return codeString
   }
 
-  const onChangeCode = async (code: string, index: number) => {
-    const typedCode = code.slice(-1)
-    const currentCodes = [...codes]
-    const copiedCode = await Clipboard.getString()
+  const onChangeCode = useCallback(
+    (code: string, index: number) => {
+      const typedCode = code.slice(-1)
+      const currentCodes = [...codes]
 
-    if (copiedCode && copiedCode !== "") {
-      copiedCode.split("").forEach((code, i) => {
-        if (index + i < codeCount) {
-          currentCodes[index + i] = code
-        }
-      })
-      const nextIndexFocus = index + copiedCode.length
-      inputCodeRef.current[
-        nextIndexFocus > codeCount ? codeCount - 1 : nextIndexFocus
-      ]?.focus()
-      await Clipboard.setString("")
-    } else {
-      currentCodes[index] = typedCode
-    }
-    setCodes(currentCodes)
-  }
+      if (code.length > 2) {
+        code.split("").forEach((code, i) => {
+          if (index + i < codeCount) {
+            currentCodes[index + i] = code
+          }
+        })
+        const nextIndexFocus = index + code.length
+        inputCodeRef.current[
+          nextIndexFocus >= codeCount ? codeCount - 1 : nextIndexFocus
+        ]?.focus()
+      } else {
+        currentCodes[index] = typedCode
+      }
+      setCodes(currentCodes)
+    },
+    [codes]
+  )
 
   const onKeyPress = (
     event: React.KeyboardEvent<TextInput>,
@@ -117,5 +124,5 @@ const Otp = ({
     </View>
   )
 }
-12345
+
 export default Otp
