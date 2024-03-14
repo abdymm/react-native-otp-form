@@ -4,6 +4,10 @@
 
 React Native component for OTP Input Form
 
+<p align="center">
+  <img src="https://i.imgur.com/nMFGg6b.gif" alt="DEMO" width="380" height="826"/>
+</p>
+
 ## Getting started
 
 ### Yarn
