@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-import OTP from "react-native-otp-form"
+import OTP from "./Otp"
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
         codeCount={6}
         containerStyle={{ marginTop: 50 }}
         otpStyles={{ backgroundColor: "#fff", borderRadius: 100 }}
-        onFinish={(code) => alert(`Submit the OTP ${code}`)}
+        onFinish={(code) => console.log(`Submit the OTP ${code}`)}
       />
     </View>
   )

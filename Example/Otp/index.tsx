@@ -5,6 +5,7 @@ import {
   Dimensions,
   TextInputProps,
   ViewStyle,
+  Clipboard,
 } from "react-native"
 
 const width = Dimensions.get("window").width
@@ -58,10 +59,25 @@ const Otp = ({
     return codeString
   }
 
-  const onChangeCode = (code: string, index: number): void => {
+  const onChangeCode = async (code: string, index: number) => {
     const typedCode = code.slice(-1)
     const currentCodes = [...codes]
-    currentCodes[index] = typedCode
+    const copiedCode = await Clipboard.getString()
+
+    if (copiedCode && copiedCode !== "") {
+      copiedCode.split("").forEach((code, i) => {
+        if (index + i < codeCount) {
+          currentCodes[index + i] = code
+        }
+      })
+      const nextIndexFocus = index + copiedCode.length
+      inputCodeRef.current[
+        nextIndexFocus > codeCount ? codeCount - 1 : nextIndexFocus
+      ]?.focus()
+      await Clipboard.setString("")
+    } else {
+      currentCodes[index] = typedCode
+    }
     setCodes(currentCodes)
   }
 
@@ -101,5 +117,5 @@ const Otp = ({
     </View>
   )
 }
-
+12345
 export default Otp
