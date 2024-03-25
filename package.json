@@ -1,6 +1,6 @@
 {
   "name": "react-native-otp-form",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "UI Component for OTP input form",
   "main": "index.tsx",
   "scripts": {
