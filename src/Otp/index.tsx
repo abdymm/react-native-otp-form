@@ -83,6 +83,13 @@ const Otp = ({
       } else {
         currentCodes[index] = typedCode
       }
+
+      if (code !== "") {
+        let destIndex = index
+        destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1
+        inputCodeRef.current[destIndex]?.focus()
+      }
+
       setCodes(currentCodes)
     },
     [codes]
@@ -96,8 +103,6 @@ const Otp = ({
     let destIndex = index
     if (key === "Backspace") {
       destIndex = index > 0 ? index - 1 : 0
-    } else {
-      destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1
     }
     inputCodeRef.current[destIndex]?.focus()
   }
